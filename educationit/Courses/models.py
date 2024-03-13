@@ -12,3 +12,4 @@ class Courses(models.Model):
     description = models.TextField()
     duration = models.IntegerField()
     duration_unit = models.CharField(choices=DURATION_UNIT_CHOICES, default='months')
+    icon_link = models.CharField(null=True)

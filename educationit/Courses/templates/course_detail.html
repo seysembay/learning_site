@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{object.name}}{% endblock title %}
+{% block content %}
+<div>
+    <h1>{{ object.name }}</h1>
+    <p>{{ object.description }}</p>
+    <p>Продолжительность: {{ object.duration }} {{ object.duration_unit }}</p>
+    {% if object.icon_link %}
+    <div class="course_icon">
+        <img class="course_icon_img" src="{{object.icon_link }}" alt="{{ object.name }}">
+    </div>
+    {% endif %}
+    <div style="display:flex; width: 400px; justify-content:space-between">
+        <button class="btn_save btn_blue" onclick='location.href="/course/courses/{{object.id}}/update"'>Редактировать
+        </button>
+        <button class="btn_save btn_red" onclick='location.href="/course/courses/{{object.id}}/delete"'>Удалить</button>
+    </div>
+</div>
+{% endblock %}

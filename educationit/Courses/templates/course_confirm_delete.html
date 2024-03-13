@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Удаление курса{% endblock title %}
+{% block content %}
+<div>
+    <h1>Подтверждение</h1>
+    <p>Вы уверены что хотите удалить курс : "{{ object.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn_save btn_red">Удалить</button>
+        <a href="{% url 'Courses:course_list' %}" class="btn_save btn_blue" style="text-decoration: none">Отмена</a>
+    </form>
+</div>
+{% endblock %}

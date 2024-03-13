@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Курсы{% endblock title %}
+{% block content %}
+<div class="catalog_header">Каталог</div>
+<a href="{% url 'Courses:course_create' %}">Добавить курс</a>
+<div class="catalog_courses">
+    {% for course in courses %}
+    <div class="course" onclick='location.href="/course/courses/{{course.id}}"'>
+        <div class="course_card">
+            <div class="course_icon">
+                <img class="course_icon_img" src="{{course.icon_link }}">
+            </div>
+            <div class="course_title">{{ course.name }}</div>
+            <div class="course_duration">Длительность {{ course.duration }} {% if course.duration_unit == 'months' %}
+                {{ 'месяцев' }}
+                {% else %}
+                {% if course.duration_unit == 'weeks' %}
+                {{ 'недель' }}
+                {% else %}
+                {{ 'лет' }}
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

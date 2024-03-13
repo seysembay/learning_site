@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Курсы{% endblock title %}
+{% block content %}
+<div class="catalog_header">Создание курса</div>
+<div class="container_crate_form">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {{ form.description.label_tag }}
+        {{ form.description }}
+        {{ form.duration.label_tag }}
+        {{ form.duration }}
+        {{ form.duration_unit.label_tag }}
+        {{ form.duration_unit }}
+        {{ form.icon_link.label_tag }}
+        {{ form.icon_link }}
+        <button type="submit" class="btn_save">Сохранить</button>
+    </form>
+</div>
+{% endblock %}
