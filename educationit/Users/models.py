@@ -10,4 +10,4 @@ class Role(models.Model):
 
 
 class CustomUser(AbstractUser):
-    role = models.OneToOneField(Role, on_delete=models.CASCADE, related_name='user', null=True)
+    role = models.ForeignKey(Role, on_delete=models.PROTECT, default=2)
