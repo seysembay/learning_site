@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from Users.views import ContactView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('course/', include('Courses.urls')),
+    path('contact/', ContactView.as_view(), name='contact'),
     path("__debug__/", include("debug_toolbar.urls")),
 ]
