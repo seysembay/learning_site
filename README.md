@@ -21,12 +21,16 @@ python manage.py migrate
 python manage.py create_admin (login: admin, pass:admin)
 ```
 ```bash
+python manage.py rqworker
+```
+```bash
 python manage.py runserver
 ```
 
 ## Было добавлено:
 1) Консольная команда "create_admin" для создания суперпользователя
 2) Теперь можно запустить базу postgresql в докере командой
+3) Так же редис запускается в докере
 ```bash
 docker compose up -d
 ```
