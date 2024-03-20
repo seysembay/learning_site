@@ -18,6 +18,7 @@ class Courses(models.Model):
     icon_link = models.CharField(null=True)
     teacher = models.ForeignKey(CustomUser, related_name='course_teacher_id', on_delete=models.PROTECT, default=1,
                                 null=False)
+    students = models.ManyToManyField(CustomUser, through='CourseStudent')
 
     def __str__(self):
         return self.name
@@ -31,3 +32,11 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class CourseStudent(models.Model):
+    course = models.ForeignKey(Courses, related_name='course_course_student', on_delete=models.CASCADE)
+    student = models.ForeignKey(CustomUser, related_name='course_student', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.course.name

@@ -1,7 +1,13 @@
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
+
 from .forms import ContactForm
 import django_rq
+
+from .models import CustomUser
+from .serializers import RegisterSerializer
 from .tasks import send_to_admin, send_to_user
 
 
@@ -20,3 +26,9 @@ class ContactView(FormView):
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form))
+
+
+class RegisterView(generics.CreateAPIView):
+    queryset = CustomUser.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterSerializer

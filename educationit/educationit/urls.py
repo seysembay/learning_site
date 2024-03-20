@@ -16,11 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Users.views import ContactView
+from graphene_django.views import GraphQLView
+from Users.views import ContactView, RegisterView
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/auth/signin/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/auth/signup/', RegisterView.as_view(), name='auth_signup'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/', include('api.urls')),
     path('course/', include('Courses.urls')),
     path('contact/', ContactView.as_view(), name='contact'),
     path("__debug__/", include("debug_toolbar.urls")),
+    path("graphql/", GraphQLView.as_view(graphiql=True)),
 ]
